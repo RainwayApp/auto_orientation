@@ -11,6 +11,7 @@
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+#if !TARGET_OS_TV
     if ([@"setLandscapeRight" isEqualToString:call.method]) {
         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
     }
@@ -40,6 +41,7 @@
     }
 
     [UIViewController attemptRotationToDeviceOrientation];
+#endif
 
   result(FlutterMethodNotImplemented);
 }
